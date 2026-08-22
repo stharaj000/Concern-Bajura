@@ -1,7 +1,6 @@
 "use client"
 
 
-import logo from "../../img/concernBajuraLogo.png"
 import Link from "next/link";
 import Image from "next/image";
 import { MdClose } from "react-icons/md";
@@ -42,9 +41,11 @@ export default function Navbar() {
               </div>
 
               <Image
-                src={logo}
+                src="/img/concernBajuraLogo.png"
                 alt="Concern Bajura Logo"
-                className="w-14 h-12"
+                className="w-16 h-15"
+                width={1000}
+                height={1000}
               />
               <span className="text-text font-bold text-sm md:text-lg">Concern Bajura</span>
             </div>

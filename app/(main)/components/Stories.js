@@ -2,7 +2,6 @@
 
 
 import Image from "next/image";
-import childerns from "@/app/img/childerns.jpg"
 import useEmblaCarousel from "embla-carousel-react";
 import { useState, useEffect, useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
@@ -149,7 +148,7 @@ export default function Stories({ ourChildren, storiesOfOurChildren }) {
       <h1 className="text-2xl md:text-3xl md:text-3xl font-bold text-center text-text-muted">
         {ourChildren.title}
       </h1>
-      <Image src={ourChildren.image || childerns}
+      <Image src={ourChildren.image || "childrens.jpg"}
       width={500}
       height={500}
         className="mt-6 md:mt-10 w-screen rounded-2xl transition-all duration-500 hover:scale-105 pb-8"
