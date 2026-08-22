@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+
+
+  --color-primary: #00B4FF;
+  --color-primary-hover: #0099DB;
+  --color-primary-active: #007CB3;
+  --color-primary-light: #E6F8FF;
+
+  --color-secondary: #FF8A3D;
+  --color-secondary-hover: #F26D21;
+  --color-secondary-light: #FFF2E9;
+
+  --color-background: #FFFFFF;
+  --color-surface: #FAFBFC;
+  --color-surface-alt: #F5F9FC;
+
+  --color-text: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748B;
+
+  --color-border: #E4EDF2;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+}
+
+@theme {
+  --animate-marquee: marquee 25s linear infinite;
+  --animate-shine: shine 2s ease-in-out infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0%);
+    }
+
+    to {
+      transform: translateX(-400%);
+    }
+  }
+}
+
+
+@keyframes shine {
+
+  100% {
+    right: 100%;
+    opacity: 0;
+    transform: rotate(-25deg);
+  }
+}
+
+
+body {
+
+  font-family: var(--font-body);
+}
+
+
+.stories {
+  /* background-color: red; */
+}
+
+
+.stories:hover .storiesImg {
+  scale: 1.1;
+}
+
+.stories:hover .storiesText {
+  translate: 0 -12px;
+}
+
+
+.donateSection {
+  border-bottom-left-radius: 50% 12%;
+  border-bottom-right-radius: 50% 12%;
+}
+
+.aboutImage {
+  border-top-left-radius: 25% 25%;
+  border-bottom-right-radius: 50% 12%;
+}
+
+
+
+/* Nav underline hover */
+.nav-link hr {
+  margin-top: 4px;
+  width: 0%;
+  transition: 0.5s all;
+  visibility: hidden;
+}
+
+.nav-link:hover hr,
+.nav-link.active hr {
+  visibility: visible;
+  border: 0.5px solid black;
+  width: 100%;
+}
+
+
+
+
+
+.embla__slide{
+  transform: scale(.82);
+  opacity: .45;
+  transition: .5s;
+}
+
+
+
+.embla__slide.is-selected{
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+.embla__slide.not-selected{
+  filter: blur(1);
+}
