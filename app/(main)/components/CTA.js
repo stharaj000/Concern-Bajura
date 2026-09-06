@@ -1,4 +1,6 @@
-export default function CTA({volunteer, donateNow}) {
+import Link from "next/link";
+
+export default function CTA({ volunteer, donateNow }) {
   return (
     <>
       {/* become part of the change */}
@@ -31,12 +33,14 @@ export default function CTA({volunteer, donateNow}) {
             {donateNow.title}
           </h2>
           <p className="mt-4 text-gray-700 text-md md:text-xl max-w-3xl mx-auto ">
-           {donateNow.description}
+            {donateNow.description}
           </p>
-          <button className="mt-6 w-fit shadow-lg text-md md:text-2xl bg-warning text-white font-medium px-10 py-5 rounded-lg hover:opacity-90 transition-opacity text-shadow-md hover:cursor-pointer relative overflow-hidden">
-            {donateNow.buttonText}
-          <div className="w-full h-full px-2 py-20 absolute bg-white/12 top-0 right-0 animate-ping blur-md"></div>
-          </button>
+          <Link href="/donate">
+            <button className="mt-6 w-fit shadow-lg text-md md:text-2xl bg-warning text-white font-medium px-10 py-5 rounded-lg hover:opacity-90 transition-opacity text-shadow-md hover:cursor-pointer relative overflow-hidden">
+              {donateNow.buttonText}
+              <div className="w-full h-full px-2 py-20 absolute bg-white/12 top-0 right-0 animate-ping blur-md"></div>
+            </button>
+          </Link>
 
         </div>
       </section>

@@ -1,8 +1,7 @@
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import SideBarClient from "./SideBarClient";
-
+import SideBarClient from "./components/SideBarClient";
 
 
 export default async function RootLayout({ children }) {
@@ -23,7 +22,7 @@ export default async function RootLayout({ children }) {
   return (
     <>
 
-      <div className="flex min-h-screen w-full">
+      <div className="flex min-h-screen">
 
         <SideBarClient />
 

@@ -6,7 +6,7 @@ import { LuInstagram } from "react-icons/lu";
 
 export default function Footer({ data }) {
   return (
-    <footer className=" border-t border-outline border-border flex justify-center flex-col">
+    <footer className=" border-t relative top-20  border-outline border-border flex justify-center flex-col">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-14 flex gap-16 md:gap-8 justify-center flex-col md:flex-row">
         <div className="w-full md:w-1/2 ">
           <h3 className="font-semibold text-text-muted text-lg">{data.aboutus.title}</h3>

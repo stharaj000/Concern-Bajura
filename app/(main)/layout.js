@@ -33,7 +33,7 @@ export default async function RootLayout({ children }) {
     <html
       lang="en"
     >
-      <body className={`${inter.variable} ${plusJakSans.variable}`}>
+      <body className={` ${inter.variable} ${plusJakSans.variable}`}>
 
         <Navbar />
         <body className="min-h-full flex flex-col relative">{children}</body>

@@ -32,7 +32,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="flex min-h-screen w-full ml-62">
+    <div className="min-h-screen w-full md:w-[80%]">
 
       {/* Sidebar */}
 
@@ -45,6 +45,7 @@ export default function Dashboard() {
         {/* Navbar */}
 
         <header className="flex items-center justify-between border-b border-gray-200 bg-white px-8 py-5">
+
 
           <div>
             <h2 className="text-2xl font-semibold">
