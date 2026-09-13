@@ -8,15 +8,22 @@ export const metadata = {
     "Get in touch with Concern Bajura - questions, partnerships, and more.",
 };
 
-export default function ContactPage() {
+import clientPromise from "@/lib/mongodb";
+
+export default async function ContactPage() {
+
+  const client = await clientPromise;
+  const db = await client.db("test");
+  const contactPage = await db.collection("contactPage").findOne({});
+
   return (
     <main className="blue-theme relative top-20">
-      <ContactHero />
+      <ContactHero data={contactPage.hero} />
 
       <section className="bg-[var(--color-surface-alt)]">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-14 md:py-16 grid md:grid-cols-2 gap-10 items-start">
-          <GetInTouch />
-          <ContactForm />
+          <GetInTouch data={contactPage.contact} />
+          <ContactForm data={contactPage.transferForm} />
         </div>
       </section>
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Image, CreditCard, Wallet } from "lucide-react";
 
-export default function DonateForm() {
+export default function DonateForm({ data }) {
 
   // const [donationAmount, setdonationAmount] = useState("");
 
@@ -89,41 +89,40 @@ export default function DonateForm() {
 
 
   const handleKhaltiPayment = () => {
-    
+
     alert("This feature is comming soon...")
-    
+
   }
 
 
   return (
     <div className="bg-[var(--color-background)] rounded-2xl border border-[var(--color-border)] shadow-sm p-6 md:p-8">
       <h2 className="text-2xl font-bold text-center text-[var(--color-text)] [font-family:var(--font-heading)]">
-        Notify Us of Your Transfer
+        {data.title}
       </h2>
       <p className="mt-2 text-center text-sm text-[var(--color-text-secondary)] max-w-md mx-auto">
-        Please provide your details so we can acknowledge your contribution
-        and confirm receipt of your invaluable donation.
+        {data.subtitle}
       </p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className={labelClass}>Full Name</label>
+            <label className={labelClass}>{data.fields.fullName.label}</label>
             <input
               type="text"
               name="donorName"
-              placeholder="Raj Stha"
+              placeholder={data.fields.fullName.placeholder}
               value={formData.donorName}
               onChange={handleChange}
               className={inputClass}
             />
           </div>
           <div>
-            <label className={labelClass}>Email Address</label>
+            <label className={labelClass}>{data.fields.email.label}</label>
             <input
               type="email"
               name="email"
-              placeholder="raj@example.com"
+              placeholder={data.fields.email.placeholder}
               value={formData.email}
               onChange={handleChange}
               className={inputClass}
@@ -133,7 +132,7 @@ export default function DonateForm() {
 
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className={labelClass}>Donation Amount</label>
+            <label className={labelClass}>{data.fields.donationAmount.label}</label>
             <div className="relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--color-text-muted)]">
                 NPR
@@ -141,7 +140,7 @@ export default function DonateForm() {
               <input
                 type="number"
                 name="amount"
-                placeholder="5000"
+                placeholder={data.fields.donationAmount.placeholder}
                 value={formData.amount}
                 onChange={handleChange}
                 className={`${inputClass} pl-12`}
@@ -149,11 +148,11 @@ export default function DonateForm() {
             </div>
           </div>
           <div>
-            <label className={labelClass}>Phone Number (Optional)</label>
+            <label className={labelClass}>{data.fields.phoneNumber.label} (Optional)</label>
             <input
               type="tel"
               name="phone"
-              placeholder="+977 ..."
+              placeholder={data.fields.phoneNumber.placeholder}
               value={formData.phone}
               onChange={handleChange}
               className={inputClass}
@@ -162,11 +161,11 @@ export default function DonateForm() {
         </div>
 
         <div>
-          <label className={labelClass}>Remarks / Message</label>
+          <label className={labelClass}>{data.fields.remarks.label}</label>
           <textarea
             name="remarks"
             rows={4}
-            placeholder="Any specific instructions or message..."
+            placeholder={data.fields.remarks.placeholder}
             value={formData.remarks}
             onChange={handleChange}
             className={`${inputClass} resize-none`}

@@ -37,6 +37,7 @@ export default function LatestUpdates({ data }) {
               <p className="mt-2 text-sm text-gray-600">{update.description}</p>
               <p className="mt-3 text-xs text-gray-400">{update.date}</p>
             </div>
+            
           </div>
         ))}
       </div>

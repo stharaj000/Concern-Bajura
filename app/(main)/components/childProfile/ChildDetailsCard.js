@@ -1,9 +1,9 @@
 const rows = [
-  { label: "Name", key: "name" },
-  { label: "Date of Birth", key: "dob" },
-  { label: "Birth Place", key: "birthPlace" },
-  { label: "Father's Name", key: "fatherName" },
-  { label: "Mother's Name", key: "motherName" },
+  { label: "Name", value: (child) => child.name },
+  { label: "Date of Birth", value: (child) => child.details.dateOfBirth },
+  { label: "Birth Place", value: (child) => child.details.birthPlace },
+  { label: "Father's Name", value: (child) => child.details.fatherName },
+  { label: "Mother's Name", value: (child) => child.details.motherName },
 ];
 
 export default function ChildDetailsCard({ child }) {
@@ -22,14 +22,14 @@ export default function ChildDetailsCard({ child }) {
 
         {rows.map((row) => (
           <div
-            key={row.key}
+            key={row.label}
             className="flex items-center justify-between py-4 border-b border-[var(--color-border)] last:border-b-0"
           >
             <span className="text-[var(--color-text-secondary)]">
               {row.label}
             </span>
             <span className="font-semibold text-[var(--color-text)]">
-              {child[row.key]}
+              {row.value(child)}
             </span>
           </div>
         ))}

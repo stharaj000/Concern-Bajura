@@ -3,15 +3,22 @@ import BackLink from "../../components/childProfile/BackLink";
 import ChildDetailsCard from "../../components/childProfile/ChildDetailsCard";
 import StoryCard from "../../components/childProfile/StoryCard";
 import SupportCTA from "../../components/childProfile/SupportCTA";
-import { children, getChildBySlug } from "../../../../lib/childrenData";
 
-export function generateStaticParams() {
-  return children.map((child) => ({ slug: child.slug }));
-}
+import clientPromise from "@/lib/mongodb";
+
 
 export async function generateMetadata({ params }) {
-  const {slug} = await params;
-  const child = getChildBySlug(slug);
+  const { slug } = await params;
+
+  const client = await clientPromise;
+  const db = await client.db("test");
+
+  const ourChildrenPage = await db.collection("ourChildrenPage").findOne({});
+
+  const child = ourChildrenPage?.children?.items?.find(
+    (item) => item.slug === slug
+  );
+
   if (!child) return {};
   return {
     title: `${child.name} | Concern Bajura`,
@@ -20,8 +27,18 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function ChildProfilePage({ params }) {
-  const {slug} = await params;
-  const child =  getChildBySlug(slug);
+  const { slug } = await params;
+
+  const client = await clientPromise;
+  const db = client.db("test");
+
+  const ourChildrenPage = await db
+    .collection("ourChildrenPage")
+    .findOne({});
+
+  const child = ourChildrenPage?.children?.items?.find(
+    (item) => item.slug === slug
+  );
 
   if (!child) {
     notFound();

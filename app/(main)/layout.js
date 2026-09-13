@@ -1,7 +1,8 @@
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
-// import "./globals.css";
+import "../globals.css";
 import Navbar from "@/app/(main)/components/Navbar";
 import Footer from "@/app/(main)/components/Footer";
+import VisitorTracker from "./components/VisitorTracker";
 
 import clientPromise from "@/lib/mongodb";
 
@@ -34,6 +35,8 @@ export default async function RootLayout({ children }) {
       lang="en"
     >
       <body className={` ${inter.variable} ${plusJakSans.variable}`}>
+
+        <VisitorTracker />
 
         <Navbar />
         <body className="min-h-full flex flex-col relative">{children}</body>

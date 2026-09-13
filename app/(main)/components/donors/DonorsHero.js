@@ -1,23 +1,26 @@
-export default function DonorsHero() {
+export default function DonorsHero({ data }) {
   return (
-    <section className="relative h-72 md:h-96 w-full overflow-hidden">
+    <section className="relative h-64 md:h-72 w-full overflow-hidden">
       <img
-        src="https://placehold.co/1600x650/93c5fd/93c5fd?text=+"
-        alt="Classroom in Bajura"
+        src={data.image}
+        alt={data.title}
         className="absolute inset-0 w-full h-full object-cover"
       />
       {/* light overlay, unlike the dark ones on other hero banners */}
-      <div className="absolute inset-0 bg-white/70" />
+      <div className="absolute inset-0 bg-black/45" />
 
-      <div className="relative h-full max-w-3xl mx-auto px-4 flex flex-col items-center justify-center text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-primary-active)] [font-family:var(--font-heading)]">
-          Our Donors &amp; Partners
+      <div className="relative h-full max-w-4xl mx-auto px-4 flex flex-col items-center justify-center text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-white [font-family:var(--font-heading)]">
+          {data.title}
         </h1>
-        <p className="mt-4 text-[var(--color-text-secondary)] text-lg max-w-xl">
-          Transparency and gratitude for the individuals and organizations
-          powering our mission.
+        <p className="mt-4 text-white/90 text-lg max-w-xl">
+          {data.subtitle}
         </p>
       </div>
     </section>
+
+
+
+
   );
 }

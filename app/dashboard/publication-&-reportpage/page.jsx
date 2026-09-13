@@ -297,7 +297,7 @@ export default function PublicationsReportsCMS() {
 
     if (loading) {
         return (
-            <div className="flex min-h-[60vh] items-center justify-center">
+            <div className="flex min-h-[60vh] items-center justify-center w-full">
                 <p className="text-sm text-gray-500">
                     Loading Publications & Reports...
                 </p>
@@ -321,7 +321,7 @@ export default function PublicationsReportsCMS() {
 
     return (
         <main className="min-h-screen w-full md:w-[80%]">
-            
+
 
             <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-6">
 
@@ -332,11 +332,11 @@ export default function PublicationsReportsCMS() {
 
                         <div>
                             <h1 className="text-xl font-semibold tracking-tight text-gray-900 sm:text-2xl">
-                                Programs & Projects Page
+                                Publication & Report Page
                             </h1>
 
                             <p className="mt-1 text-sm text-gray-500">
-                                Manage and update your Programs & Projects page content.
+                                Manage and update your Publication & Report page content.
                             </p>
                         </div>
 
@@ -351,7 +351,7 @@ export default function PublicationsReportsCMS() {
                     </div>
                 </div>
 
-                 <div className="relative top-44 flex flex-col gap-6 p-4 sm:p-8 min-[700px]:top-22">
+                <div className="relative top-40 flex flex-col gap-6 p-4 sm:p-8 min-[700px]:top-22">
 
                     {/* ====================================================
               HERO SECTION
@@ -849,7 +849,7 @@ export default function PublicationsReportsCMS() {
               SAVE
           ==================================================== */}
 
-                    <div className="flex justify-end pb-10">
+                    <div className="flex justify-end">
                         <button
                             type="button"
                             onClick={

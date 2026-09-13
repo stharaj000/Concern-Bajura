@@ -1,41 +1,35 @@
 import { CreditCard, Package, Target, Landmark, Tag } from "lucide-react";
 
 // pick a fitting icon depending on the type of contribution / method
-const contributionIcon = (contribution) =>
-  contribution.includes("$") ? CreditCard : Package;
 
-const methodIcon = (method) =>
-  method.toLowerCase().includes("grant") ? Tag : Landmark;
 
 export default function DonorCard({ donor }) {
-  const ContributionIcon = contributionIcon(donor.contribution);
-  const MethodIcon = methodIcon(donor.method);
 
   const rows = [
     {
-      icon: ContributionIcon,
       label: "Contribution",
       value: donor.contribution,
     },
     {
-      icon: Target,
       label: "Directed Towards",
       value: donor.directedTowards,
     },
     {
-      icon: MethodIcon,
       label: "Method",
       value: donor.method,
     },
   ];
 
   return (
-    <div className="bg-[var(--color-background)] rounded-xl border border-[var(--color-border)] overflow-hidden">
+    <div className="bg-white shadow-xl hover:cursor-pointer rounded-2xl overflow-hidden hover:shadow-md transition-shadow relative">
       <img
         src={donor.image}
         alt={donor.name}
         className="w-full h-52 object-cover"
       />
+
+      <div className="whiteShade bg-white opacity-8 h-74 w-18 absolute top-[-25px] right-0 z-20 animate-shine"></div>
+      <div className="whiteShade bg-white opacity-4 h-74 w-12 absolute top-0 right-10 z-20 animate-shine"></div>
 
       <div className="p-6">
         <h3 className="text-xl font-semibold text-[var(--color-text)]">
@@ -44,15 +38,12 @@ export default function DonorCard({ donor }) {
 
         <div className="mt-4 space-y-4">
           {rows.map((row) => {
-            const Icon = row.icon;
+
             return (
               <div key={row.label} className="flex gap-3">
-                <Icon
-                  size={17}
-                  className="text-[var(--color-text-muted)] shrink-0 mt-0.5"
-                />
+
                 <div>
-                  <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-[0.05em]">
+                  <p className="text-xs font-semibold text-text-muted uppercase tracking-[0.05em]">
                     {row.label}
                   </p>
                   <p className="text-[var(--color-text)] font-medium">

@@ -23,10 +23,10 @@ const SideBarClient = () => {
         <>
 
             <div
-                className={`flex min-[700px]:hidden fixed z-30 transition-all rounded-full gap-4 top-6 left-4 px-4 md:p-4 py-4 hover:cursor-pointer ${!sidebar ? 'block' : 'hidden'}`}
+                className={`flex min-[700px]:hidden fixed z-30 transition-all rounded-full gap-4 top-2  px-4 md:p-4 py-4 hover:cursor-pointer ${!sidebar ? 'block' : 'hidden'}`}
             >
                 <button
-                    className="text-white flex flex-col gap-[5px] cursor-pointer"
+                    className="text-white bg-white p-4 rounded-full flex flex-col gap-[5px] cursor-pointer"
                     onClick={handleOpenSideBar}
                 >
                     <span className="block w-6 h-[2px] bg-black transition-all"></span>
@@ -52,16 +52,18 @@ const SideBarClient = () => {
 
                     {[
                         { name: "Dashboard", url: "/dashboard" },
+                        { name: "Contact Messages", url: "/dashboard/contactmessages" },
                         { name: "Homepage", url: "/dashboard/homepage" },
                         { name: "About page", url: "/dashboard/aboutpage" },
                         { name: "Publication & Report page", url: "/dashboard/publication-&-reportpage" },
                         { name: "Our Children page", url: "/dashboard/ourchildrenpage" },
                         { name: "Programs & Projects page", url: "/dashboard/programs-&-projectspage" },
                         { name: "Our Team page", url: "/dashboard/ourteampage" },
-                        { name: "Doners page", url: "/dashboard/doners" },
-                        { name: "News page", url: "/dashboard/news" },
-                        { name: "Gallery page", url: "/dashboard/gallery" },
-                        { name: "Contact page", url: "/dashboard/contact" },
+                        { name: "Donors page", url: "/dashboard/donorpage" },
+                        { name: "News & Event page", url: "/dashboard/newspage" },
+                        { name: "Gallery page", url: "/dashboard/gallerypage" },
+                        { name: "Contact page", url: "/dashboard/contactpage" },
+                        { name: "Donate page", url: "/dashboard/donatepage" },
                        
                     ].map((item) => {
 

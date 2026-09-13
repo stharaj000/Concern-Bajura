@@ -2,22 +2,28 @@ import GalleryHero from "../components/gallery/GalleryHero";
 import PhotoAlbums from "../components/gallery/PhotoAlbums";
 import VideoStories from "../components/gallery/VideoStories";
 
+import clientPromise from "@/lib/mongodb";
+
 export const metadata = {
   title: "Gallery | Concern Bajura",
   description:
     "Photo albums and video stories from Concern Bajura's work supporting children in Bajura, Nepal.",
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+
+  const client = await clientPromise;
+  const db = client.db("test");
+
+  const galleryPage = await db.collection("galleryPage").findOne({});
+
   return (
     <main className="blue-theme relative top-20">
-      <GalleryHero />
+      <GalleryHero data={galleryPage.hero} />
 
-      <div className="bg-[var(--color-surface-alt)]">
-        <PhotoAlbums />
-      </div>
+      <PhotoAlbums data={galleryPage.albums} />
 
-      <VideoStories />
+      <VideoStories data={galleryPage.videos} />
     </main>
   );
 }

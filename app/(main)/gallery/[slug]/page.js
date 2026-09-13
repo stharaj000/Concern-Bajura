@@ -1,15 +1,23 @@
 import { notFound } from "next/navigation";
 import AlbumHero from "../../components/gallery/AlbumHero";
 import AlbumPhotoGrid from "../../components/gallery/AlbumPhotoGrid";
-import { albums, getAlbumBySlug } from "@/lib/galleryData";
+// import { albums, getAlbumBySlug } from "@/lib/galleryData";
 
-export function generateStaticParams() {
-  return albums.map((album) => ({ slug: album.slug }));
-}
+import clientPromise from "@/lib/mongodb";
+
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const album = getAlbumBySlug(slug);
+
+  const client = await clientPromise;
+  const db = await client.db("test");
+
+  const galleryPage = await db.collection("galleryPage").findOne({});
+
+  const album = galleryPage?.albums?.items?.find(
+    (item) => item.slug === slug
+  );
+
   if (!album) return {};
   return {
     title: `${album.title} | Gallery | Concern Bajura`,
@@ -19,7 +27,16 @@ export async function generateMetadata({ params }) {
 
 export default async function AlbumPage({ params }) {
   const { slug } = await params;
-  const album = getAlbumBySlug(slug);
+
+  const client = await clientPromise;
+  const db = await client.db("test");
+
+  const galleryPage = await db.collection("galleryPage").findOne({});
+
+
+  const album = galleryPage?.albums?.items?.find(
+    (item) => item.slug === slug
+  );
 
   if (!album) {
     notFound();
@@ -30,7 +47,7 @@ export default async function AlbumPage({ params }) {
       <AlbumHero title={album.title} />
 
       <div className="bg-[var(--color-surface-alt)]">
-        <AlbumPhotoGrid count={album.count} />
+        <AlbumPhotoGrid photos={album.photos} />
       </div>
     </main>
   );

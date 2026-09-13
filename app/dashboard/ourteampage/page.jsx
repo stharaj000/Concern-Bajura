@@ -639,7 +639,7 @@ export default function OurTeamCMS() {
 
     if (loading) {
         return (
-            <div className="flex min-h-[60vh] items-center justify-center">
+            <div className="flex min-h-[60vh] items-center justify-center w-full">
                 <p className="text-sm text-gray-500">
                     Loading Our Team...
                 </p>
@@ -689,7 +689,7 @@ export default function OurTeamCMS() {
                     </div>
                 </div>
 
-                 <div className="relative top-44 flex flex-col gap-6 p-4 sm:p-8 min-[700px]:top-22">
+                <div className="relative top-44 flex flex-col gap-6 p-4 sm:p-8 min-[700px]:top-22">
 
                     {/* ====================================================
               HERO SECTION
@@ -1960,11 +1960,9 @@ export default function OurTeamCMS() {
                         </div>
                     </section>
 
-                    {/* ====================================================
-              SAVE
-          ==================================================== */}
 
-                    <div className="flex justify-end pb-10">
+
+                    <div className="flex justify-end">
                         <button
                             type="button"
                             onClick={
