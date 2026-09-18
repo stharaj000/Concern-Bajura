@@ -46,7 +46,7 @@ export default async function ChildProfilePage({ params }) {
 
   return (
     <main className="blue-theme relative top-20">
-      <div className="bg-[var(--color-surface-alt)]">
+      <div className="bg-surface">
         <div className="max-w-5xl mx-auto px-4 md:px-6 pt-6">
           <BackLink />
         </div>
@@ -60,7 +60,7 @@ export default async function ChildProfilePage({ params }) {
         </div>
       </div>
 
-      <SupportCTA />
+      <SupportCTA data={ourChildrenPage.slugCta} />
     </main>
   );
 }

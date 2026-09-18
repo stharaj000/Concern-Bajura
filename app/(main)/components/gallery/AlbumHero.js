@@ -13,11 +13,11 @@ export default function AlbumHero({ title }) {
       <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative h-full max-w-6xl mx-auto px-4 md:px-6 flex items-center">
-        <h1 className="flex items-center gap-2 text-2xl md:text-4xl font-bold text-white [font-family:var(--font-heading)]">
+        <h1 className="flex items-center gap-2 text-2xl md:text-4xl font-bold text-text-white [font-family:var(--font-heading)]">
           <Link href="/gallery" className="hover:underline">
             Gallery
           </Link>
-          <ChevronRight size={26} className="text-white/70" />
+          <ChevronRight size={26} className="text-text-white-secondary" />
           <span>{title}</span>
         </h1>
       </div>

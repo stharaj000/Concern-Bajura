@@ -76,9 +76,6 @@ export default function HomepageCMS() {
                 throw new Error("Failed to save homepage");
             }
 
-            const data = await response.json();
-
-            console.log("Save response:", data);
 
             alert("Changes saved successfully!");
 
@@ -392,27 +389,34 @@ export default function HomepageCMS() {
                                         </div>
 
                                         <div>
-                                            <input
-                                                className={inputClass}
-                                                placeholder="Button URL" value={homepage.hero.button1Link}
+                                            <div>
+                                                <label className={labelClass}>
+                                                    First Button Link
+                                                </label>
+                                                <input
+                                                    className={inputClass}
+                                                    placeholder="Button URL" value={homepage.hero.button1Link}
 
-                                                onChange={(e) => {
-                                                    setHomepage({
-                                                        ...homepage,
-                                                        hero: {
-                                                            ...homepage.hero,
-                                                            button1Link: e.target.value
-                                                        }
-                                                    })
-                                                }}
-                                            />
+                                                    onChange={(e) => {
+                                                        setHomepage({
+                                                            ...homepage,
+                                                            hero: {
+                                                                ...homepage.hero,
+                                                                button1Link: e.target.value
+                                                            }
+                                                        })
+                                                    }}
+                                                />
+                                            </div>
 
 
                                         </div>
                                     </div>
 
 
-                                    <label className={`${labelClass} mt-4`}>
+                                    <br />
+
+                                    <label className={labelClass}>
                                         Second Button Text
                                     </label>
 
@@ -421,6 +425,7 @@ export default function HomepageCMS() {
                                             <input
                                                 className={inputClass}
                                                 placeholder="Button Text" value={homepage.hero.button2Text}
+                                                maxLength={fieldLimits.buttonText}
 
                                                 onChange={(e) => {
                                                     setHomepage({
@@ -432,25 +437,140 @@ export default function HomepageCMS() {
                                                     })
                                                 }}
                                             />
+
                                             <p className={counterClass(homepage.hero.button2Text.length, fieldLimits.buttonText)}>{homepage.hero.button2Text.length}/{fieldLimits.buttonText} characters</p>
 
                                         </div>
 
                                         <div>
+                                            <div>
+                                                <label className={labelClass}>
+                                                    Second Button Link
+                                                </label>
+                                                <input
+                                                    className={inputClass}
+                                                    placeholder="Button URL" value={homepage.hero.button2Link}
+
+                                                    onChange={(e) => {
+                                                        setHomepage({
+                                                            ...homepage,
+                                                            hero: {
+                                                                ...homepage.hero,
+                                                                button2Link: e.target.value
+                                                            }
+                                                        })
+                                                    }}
+                                                />
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <br />
+
+
+
+                                    <div className={fieldRowClass}>
+
+
+                                        <div>
+
+                                            <label className={labelClass}>
+                                                Helper 1 Title
+                                            </label>
+
                                             <input
                                                 className={inputClass}
-                                                placeholder="Button URL" value={homepage.hero.button2Link}
-
+                                                placeholder="Enter Helper 1 Title" value={homepage.hero.helper1Title}
+                                                maxLength={15}
                                                 onChange={(e) => {
                                                     setHomepage({
                                                         ...homepage,
                                                         hero: {
                                                             ...homepage.hero,
-                                                            button2Link: e.target.value
+                                                            helper1Title: e.target.value
                                                         }
                                                     })
                                                 }}
                                             />
+                                            <p className={counterClass(homepage.hero.helper1Title.length, 15)}>{homepage.hero.helper1Title.length}/15 characters</p>
+
+                                        </div>
+
+                                        <div>
+
+                                            <label className={labelClass}>
+                                                Helper 1 Value
+                                            </label>
+
+                                            <input
+                                                className={inputClass}
+                                                placeholder="Enter Helper 1 Title" value={homepage.hero.helper1Value}
+                                                maxLength={15}
+                                                onChange={(e) => {
+                                                    setHomepage({
+                                                        ...homepage,
+                                                        hero: {
+                                                            ...homepage.hero,
+                                                            helper1Value: e.target.value
+                                                        }
+                                                    })
+                                                }}
+                                            />
+                                            <p className={counterClass(homepage.hero.helper1Value.length, 15)}>{homepage.hero.helper1Value.length}/15 characters</p>
+
+                                        </div>
+
+
+
+
+
+                                        <div>
+
+                                            <label className={labelClass}>
+                                                Helper 2 Title
+                                            </label>
+
+                                            <input
+                                                className={inputClass}
+                                                placeholder="Enter Helper 1 Title" value={homepage.hero.helper2Title}
+                                                maxLength={15}
+                                                onChange={(e) => {
+                                                    setHomepage({
+                                                        ...homepage,
+                                                        hero: {
+                                                            ...homepage.hero,
+                                                            helper2Title: e.target.value
+                                                        }
+                                                    })
+                                                }}
+                                            />
+                                            <p className={counterClass(homepage.hero.helper2Title.length, 15)}>{homepage.hero.helper2Title.length}/15 characters</p>
+
+                                        </div>
+
+                                        <div>
+
+                                            <label className={labelClass}>
+                                                Helper 2 Value
+                                            </label>
+
+                                            <input
+                                                className={inputClass}
+                                                placeholder="Enter Helper 1 Title" value={homepage.hero.helper2Value}
+                                                maxLength={15}
+                                                onChange={(e) => {
+                                                    setHomepage({
+                                                        ...homepage,
+                                                        hero: {
+                                                            ...homepage.hero,
+                                                            helper2Value: e.target.value
+                                                        }
+                                                    })
+                                                }}
+                                            />
+                                            <p className={counterClass(homepage.hero.helper2Value.length, 15)}>{homepage.hero.helper2Value.length}/15 characters</p>
+
                                         </div>
 
                                     </div>
@@ -1101,29 +1221,7 @@ export default function HomepageCMS() {
 
                                 </div>
 
-                                <button
-                                    type="button"
-                                    className={addButtonClass}
-                                    onClick={() => {
-                                        setHomepage({
-                                            ...homepage,
-                                            ourTeam: {
-                                                ...homepage.ourTeam,
-                                                members: [
-                                                    ...homepage.ourTeam.members,
-                                                    {
-                                                        image: "",
-                                                        name: "",
-                                                        role: "",
-                                                    }
-                                                ]
-                                            }
-                                        });
-                                    }}
-                                >
-                                    <span className="text-lg leading-none">+</span>
-                                    Add Team Member
-                                </button>
+                              
                             </div>
 
                             {/* Section Title */}
@@ -1304,10 +1402,35 @@ export default function HomepageCMS() {
 
                                             </div>
                                         </div>
+                                        
                                     </div>
+                                    
 
 
                                 ))}
+                                  <button
+                                    type="button"
+                                    className={addButtonClass}
+                                    onClick={() => {
+                                        setHomepage({
+                                            ...homepage,
+                                            ourTeam: {
+                                                ...homepage.ourTeam,
+                                                members: [
+                                                    ...homepage.ourTeam.members,
+                                                    {
+                                                        image: "",
+                                                        name: "",
+                                                        role: "",
+                                                    }
+                                                ]
+                                            }
+                                        });
+                                    }}
+                                >
+                                    <span className="text-lg leading-none">+</span>
+                                    Add Team Member
+                                </button>
                             </div>
 
 

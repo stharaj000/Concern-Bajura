@@ -18,7 +18,7 @@ export default async function GalleryPage() {
   const galleryPage = await db.collection("galleryPage").findOne({});
 
   return (
-    <main className="blue-theme relative top-20">
+    <main className="bg-surface relative top-20">
       <GalleryHero data={galleryPage.hero} />
 
       <PhotoAlbums data={galleryPage.albums} />

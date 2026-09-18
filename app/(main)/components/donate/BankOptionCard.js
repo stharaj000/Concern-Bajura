@@ -14,19 +14,19 @@ export default function BankOptionCard({ label, bank, swift, name, account }) {
 
   return (
     <div
-      className="bg-[var(--color-background)] rounded-lg border border-[var(--color-border)] border-l-4 border-l-[var(--color-primary)] p-5"
+      className="bg-background rounded-lg border border-border border-l-4 border-l-primary p-5"
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Landmark size={20} className="text-[var(--color-primary)]" />
-          <h3 className="text-lg font-semibold text-[var(--color-text)]">
+          <Landmark size={20} className="text-primary" />
+          <h3 className="text-lg font-semibold text-text">
             {label}
           </h3>
         </div>
         <button
           onClick={handleCopy}
           title="Copy account number"
-          className="text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors"
+          className="text-text hover:text-primary transition-colors"
         >
           <Copy size={16} />
         </button>
@@ -34,30 +34,30 @@ export default function BankOptionCard({ label, bank, swift, name, account }) {
 
       <div className="mt-4 space-y-2 text-sm">
         <div className="flex gap-2">
-          <span className="w-16 shrink-0 font-medium text-[var(--color-text)]">
+          <span className="w-16 shrink-0 font-medium text-text">
             Bank:
           </span>
-          <span className="text-[var(--color-text-secondary)]">{bank}</span>
+          <span className="text-text">{bank}</span>
         </div>
         <div className="flex gap-2 items-center">
-          <span className="w-16 shrink-0 font-medium text-[var(--color-text)]">
+          <span className="w-16 shrink-0 font-medium text-text">
             SWIFT:
           </span>
-          <span className="bg-[var(--color-surface-alt)] px-2 py-0.5 rounded text-[var(--color-text-secondary)]">
+          <span className="bg-surface-alt px-2 py-0.5 rounded text-text">
             {swift}
           </span>
         </div>
         <div className="flex gap-2">
-          <span className="w-16 shrink-0 font-medium text-[var(--color-text)]">
+          <span className="w-16 shrink-0 font-medium text-text">
             Name:
           </span>
-          <span className="text-[var(--color-text-secondary)]">{name}</span>
+          <span className="text-text">{name}</span>
         </div>
         <div className="flex gap-2">
-          <span className="w-16 shrink-0 font-medium text-[var(--color-text)]">
+          <span className="w-16 shrink-0 font-medium text-text">
             Account:
           </span>
-          <span className="font-semibold text-[var(--color-primary)]">
+          <span className="font-semibold text-primary">
             {copied ? "Copied!" : account}
           </span>
         </div>

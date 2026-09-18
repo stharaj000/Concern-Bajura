@@ -43,10 +43,10 @@ export default function Dashboard() {
 
   const [selectedDonation, setSelectedDonation] = useState(null);
 
-  console.log(selectedDonation)
+  const [activities, setActivities] = useState([]);
 
 
- 
+
 
   useEffect(() => {
 
@@ -64,7 +64,7 @@ export default function Dashboard() {
 
         const data = await response.json();
 
-       
+
 
         if (Array.isArray(data)) {
           setDonations(data);
@@ -92,6 +92,33 @@ export default function Dashboard() {
     fetchDonations();
 
   }, []);
+
+
+
+  useEffect(() => {
+
+    const fetchActivities = async () => {
+      try {
+        const response = await fetch("/api/activity");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch activities");
+        }
+
+        const data = await response.json();
+
+        setActivities(
+          Array.isArray(data.activities) ? data.activities : []
+        );
+      } catch (error) {
+        console.eror("Activity fetch error: ", error)
+      }
+    };
+
+    fetchActivities();
+
+  }, [])
+
 
 
 
@@ -194,7 +221,7 @@ export default function Dashboard() {
 
 
 
- 
+
 
   const filteredDonations = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -222,7 +249,7 @@ export default function Dashboard() {
   }, [donations, search]);
 
 
- 
+
 
   const totalDonations = useMemo(() => {
     return donations.reduce(
@@ -235,17 +262,7 @@ export default function Dashboard() {
 
 
 
- 
 
-  const activities = [
-    "Homepage updated",
-    "New donation received",
-    "Gallery image uploaded",
-    "Volunteer added",
-  ];
-
-
- 
 
   return (
 
@@ -266,11 +283,11 @@ export default function Dashboard() {
 
           <div className="relative left-12 md:left-0">
 
-            <h2 className="text-2xl font-semibold">
+            <h2 className="text-2xl font-semibold text-text">
               Dashboard
             </h2>
 
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-text-secondary">
               Welcome back, Admin
             </p>
 
@@ -360,7 +377,7 @@ export default function Dashboard() {
 
                     <Search
                       size={18}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary"
                     />
 
                     <input
@@ -370,7 +387,7 @@ export default function Dashboard() {
                       onChange={(e) =>
                         setSearch(e.target.value)
                       }
-                      className="w-full rounded-xl border border-gray-200 bg-gray-50 py-2.5 pl-10 pr-4 text-sm outline-none transition focus:border-sky-400 focus:bg-white focus:ring-2 focus:ring-sky-100"
+                      className="w-full rounded-xl border border-border bg-gray-50 py-2.5 pl-10 pr-4 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-sky-100"
                     />
 
                   </div>
@@ -406,7 +423,7 @@ export default function Dashboard() {
 
                 ) : filteredDonations.length === 0 ? (
 
-                 
+
 
                   <div className="flex min-h-[400px] flex-col items-center justify-center px-6 text-center">
 
@@ -438,7 +455,7 @@ export default function Dashboard() {
 
                 ) : (
 
-                 
+
 
                   <div className="overflow-x-auto">
 
@@ -678,18 +695,21 @@ export default function Dashboard() {
 
                 <div className="flex flex-col gap-3">
 
-                  <button className="rounded-xl bg-sky-500 py-3 text-white transition hover:bg-sky-600">
+                  <Link href={"/dashboard/programs-&-projectspage"}>
+                    <button className="rounded-xl bg-sky-500 w-full py-3 text-white transition hover:bg-sky-600">
 
-                    Add Project
+                      Add Project
 
-                  </button>
+                    </button>
+                  </Link>
 
+                  <Link href={"/dashboard/gallerypage"}>
+                    <button className="rounded-xl w-full border border-gray-200 py-3 transition hover:bg-gray-50">
 
-                  <button className="rounded-xl border border-gray-200 py-3 transition hover:bg-gray-50">
+                      Upload Gallery
 
-                    Upload Gallery
-
-                  </button>
+                    </button>
+                  </Link>
 
 
                   <Link href="/dashboard/homepage">
@@ -717,24 +737,32 @@ export default function Dashboard() {
 
 
                 <div className="flex flex-col gap-4">
-
-                  {activities.map(
-                    (activity) => (
-
+                  {activities.length === 0 ? (
+                    <p className="text-sm text-gray-400">
+                      No recent activity
+                    </p>
+                  ) : (
+                    activities.map((activity) => (
                       <div
-                        key={activity}
+                        key={activity._id}
                         className="border-b border-gray-100 pb-3 last:border-0"
                       >
-
-                        <p className="text-sm text-gray-700">
-                          {activity}
+                        <p className="text-sm font-medium text-gray-700">
+                          {activity.action}
                         </p>
 
+                        {activity.description && (
+                          <p className="mt-1 text-xs text-gray-400">
+                            {activity.description}
+                          </p>
+                        )}
+
+                        <p className="mt-1 text-xs text-gray-400">
+                          {formatDateTime(activity.createdAt)}
+                        </p>
                       </div>
-
-                    )
+                    ))
                   )}
-
                 </div>
 
               </div>

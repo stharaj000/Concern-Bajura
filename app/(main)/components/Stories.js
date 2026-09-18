@@ -5,6 +5,7 @@ import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { useState, useEffect, useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 
 
 
@@ -143,14 +144,14 @@ export default function Stories({ ourChildren, storiesOfOurChildren }) {
 
 
   return (
-    <section className=" mx-auto py-14 md:py-20 bg-surface">
+    <section className=" mx-auto py-14 md:py-20">
 
-      <h1 className="text-2xl md:text-3xl md:text-3xl font-bold text-center text-text-muted">
+      <h1 className="text-2xl md:text-3xl md:text-3xl font-bold text-center text-text-secondary">
         {ourChildren.title}
       </h1>
       <Image src={ourChildren.image || "childrens.jpg"}
-      width={500}
-      height={500}
+        width={500}
+        height={500}
         className="mt-6 md:mt-10 w-screen rounded-2xl transition-all duration-500 hover:scale-105 pb-8"
       />
 
@@ -159,7 +160,7 @@ export default function Stories({ ourChildren, storiesOfOurChildren }) {
 
 
 
-      <h1 className="text-2xl md:text-3xl md:text-3xl font-bold text-center pt-14 text-text-muted">
+      <h1 className="text-2xl md:text-3xl md:text-3xl font-bold text-center pt-14 text-text-secondary">
         {storiesOfOurChildren.title}
       </h1>
 
@@ -312,9 +313,11 @@ export default function Stories({ ourChildren, storiesOfOurChildren }) {
 
 
       <div className="mt-30 flex justify-center">
-        <button className="border border-border cursor-pointer bg-background text-text font-medium px-6 py-3 rounded-lg hover:bg-primary-light transition-colors">
-          {storiesOfOurChildren.buttonText}
-        </button>
+        <Link href={storiesOfOurChildren.buttonLink}>
+          <button className="border border-border cursor-pointer bg-background text-text font-medium px-6 py-3 rounded-lg hover:bg-buttonhover transition-colors">
+            {storiesOfOurChildren.buttonText}
+          </button>
+        </Link>
       </div>
     </section>
   );

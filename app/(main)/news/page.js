@@ -18,10 +18,10 @@ export default async function NewsPage() {
   const newspage = await db.collection("newspage").findOne({});
 
   return (
-    <main className="blue-theme relative top-20">
+    <main className="bg-surface relative top-20">
       <NewsHero data={newspage.hero} />
 
-      <div className="bg-[var(--color-surface-alt)]">
+      <div className="bg-surface">
         <LatestNews data={newspage.news} />
       </div>
 

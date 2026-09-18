@@ -4,10 +4,10 @@ import BankOptionCard from "./BankOptionCard";
 export default function BankTransfer({ data }) {
   return (
     <div>
-      <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-primary)] [font-family:var(--font-heading)]">
+      <h2 className="text-2xl md:text-3xl font-bold text-text-secondary">
         {data.title}
       </h2>
-      <p className="mt-2 text-[var(--color-text-secondary)]">
+      <p className="mt-2 text-text-secondary">
         {data.subtitle}
       </p>
 
@@ -33,12 +33,12 @@ export default function BankTransfer({ data }) {
 
       </div>
 
-      <div className="mt-6 bg-[var(--color-primary-light)] border border-[var(--color-primary)]/20 rounded-lg p-4 flex gap-3">
+      <div className="mt-6 bg-background border border-primary/20 rounded-lg p-4 flex gap-3">
         <ShieldCheck
           size={20}
-          className="text-[var(--color-primary)] shrink-0 mt-0.5"
+          className="text-primary shrink-0 mt-0.5"
         />
-        <p className="text-sm text-[var(--color-primary-active)]">
+        <p className="text-sm text-text">
           {data.notice}
         </p>
       </div>

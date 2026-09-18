@@ -377,7 +377,7 @@ export default function NewsCMS() {
 
               {/* Title + Subtitle */}
 
-              <div className={fieldRowClass}>
+              <div>
 
                 <div>
                   <label className={labelClass}>

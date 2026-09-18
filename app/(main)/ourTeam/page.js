@@ -12,17 +12,16 @@ export const metadata = {
 };
 
 export default async function TeamPage() {
-
   const client = await clientPromise;
   const db = client.db("test");
 
   const programProjectpage = await db.collection("ourTeamPage").findOne({});
 
   return (
-    <main className="blue-theme relative top-20">
+    <main className="relative top-20">
       <TeamHero data={programProjectpage.hero} />
 
-      <div className="bg-[var(--color-surface-alt)]">
+      <div className="bg-surface">
         <BoardOfDirectors data={programProjectpage.boardOfDirectors} />
         <AdvisoryCouncil data={programProjectpage.advisoryCouncil} />
         <StaffMembers data={programProjectpage.staffMembers} />

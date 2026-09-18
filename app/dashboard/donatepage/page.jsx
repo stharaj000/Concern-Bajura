@@ -573,13 +573,7 @@ export default function DonatePageCMS() {
                                 </p>
                             </div>
 
-                            <button
-                                type="button"
-                                onClick={addBankAccount}
-                                className={addButtonClass}
-                            >
-                                + Add Bank Account
-                            </button>
+                            
                         </div>
 
                         <div className="space-y-6">
@@ -1043,6 +1037,14 @@ export default function DonatePageCMS() {
                                     )
                                 )}
                             </div>
+
+                            <button
+                                type="button"
+                                onClick={addBankAccount}
+                                className={addButtonClass}
+                            >
+                                + Add Bank Account
+                            </button>
 
                             {/* Notice */}
 

@@ -69,18 +69,18 @@ export default function ContactForm({ data }) {
   }
 
   const inputClass =
-    "w-full border border-[var(--color-border)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-colors";
+    "w-full border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors";
 
   const labelClass =
-    "block text-sm font-medium text-[var(--color-text)] mb-1.5";
+    "block text-sm font-medium text-text mb-1.5";
 
   return (
-    <div className="bg-[var(--color-background)] rounded-2xl border border-[var(--color-border)] shadow-sm p-6 md:p-8">
-      <h2 className="text-2xl font-bold text-center text-[var(--color-text)] [font-family:var(--font-heading)]">
+    <div className="bg-background rounded-2xl border border-border shadow-sm p-6 md:p-8">
+      <h2 className="text-2xl font-bold text-center text-text">
         {data.title}
       </h2>
 
-      <p className="mt-2 text-center text-sm text-[var(--color-text-secondary)] max-w-md mx-auto">
+      <p className="mt-2 text-center text-sm text-text-secondary max-w-md mx-auto">
         {data.subtitle}
       </p>
 
@@ -156,14 +156,14 @@ export default function ContactForm({ data }) {
 
         {/* Success */}
         {success && (
-          <div className="rounded-lg bg-green-50 border border-green-200 px-4 py-3 text-sm text-green-700">
+          <div className="rounded-lg bg-green-50 border border-green-200 px-4 py-3 text-sm text-success">
             {success}
           </div>
         )}
 
         {/* Error */}
         {error && (
-          <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+          <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-danger">
             {error}
           </div>
         )}
@@ -172,7 +172,7 @@ export default function ContactForm({ data }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[var(--color-primary-active)] hover:bg-[var(--color-primary-hover)] disabled:opacity-60 disabled:cursor-not-allowed text-white font-medium py-3 rounded-lg transition-colors"
+            className="w-full bg-primary hover:bg-primary-hover disabled:opacity-60 disabled:cursor-not-allowed text-white font-medium py-3 rounded-lg transition-colors"
           >
             {loading ? "Sending..." : data.buttonText}
           </button>

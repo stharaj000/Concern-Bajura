@@ -28,18 +28,18 @@ export default async function AboutPage() {
 
 
   return (
-    <main className="blue-theme relative top-20">
+    <main className="bg-surface relative top-20">
       <AboutHero data={aboutpage.hero} />
 
-      <div className="bg-[var(--color-surface-alt)]">
+      <div className="flex flex-col gap-8">
         <AboutIntro data={aboutpage.about} />
         <Objectives data={aboutpage.objectives} />
         <OurHistory data={aboutpage.history} />
-      </div>
 
       <WhyConcernBajura data={aboutpage.whyConcernBajura} />
       <MissionVisionGoal data={aboutpage.missionVisionGoal} />
 
+      </div>
     </main>
   );
 }

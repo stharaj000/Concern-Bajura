@@ -21,7 +21,7 @@ export default function DonorCard({ donor }) {
   ];
 
   return (
-    <div className="bg-white shadow-xl hover:cursor-pointer rounded-2xl overflow-hidden hover:shadow-md transition-shadow relative">
+    <div className="bg-background shadow-md rounded-2xl overflow-hidden transition-shadow relative">
       <img
         src={donor.image}
         alt={donor.name}
@@ -32,7 +32,7 @@ export default function DonorCard({ donor }) {
       <div className="whiteShade bg-white opacity-4 h-74 w-12 absolute top-0 right-10 z-20 animate-shine"></div>
 
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-[var(--color-text)]">
+        <h3 className="text-xl font-semibold text-text">
           {donor.name}
         </h3>
 
@@ -46,7 +46,7 @@ export default function DonorCard({ donor }) {
                   <p className="text-xs font-semibold text-text-muted uppercase tracking-[0.05em]">
                     {row.label}
                   </p>
-                  <p className="text-[var(--color-text)] font-medium">
+                  <p className="text-text font-medium">
                     {row.value}
                   </p>
                 </div>

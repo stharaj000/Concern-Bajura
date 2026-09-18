@@ -1,4 +1,5 @@
 import clientPromise from "@/lib/mongodb";
+import { createActivity } from "@/lib/createActivity";
 
 export async function GET() {
 
@@ -41,10 +42,17 @@ export async function PUT(request) {
             }
         );
 
+        await createActivity({
+            type: "programProjectPage",
+            action: "Program & Project Page updated",
+            description: "Program & Project Page content was updated",
+        });
+
         return Response.json({
             message: "Program & Project page updated successfully",
             result
         });
+
 
     } catch (error) {
         console.error(error);

@@ -20,7 +20,7 @@ export default async function Home() {
 
 
   return (
-    <div className="relative top-20">
+    <div className="relative top-20 bg-surface">
       <Hero data={homepage.hero} />
       <About data={homepage.about} />
       <Stories 

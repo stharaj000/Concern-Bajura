@@ -1,10 +1,10 @@
 import VideoCard from "./VideoCard";
 
-export default function VideoStories({data}) {
+export default function   VideoStories({data}) {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-[var(--color-primary-active)] [font-family:var(--font-heading)]">
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-text-secondary">
           {data.title}
         </h2>
 

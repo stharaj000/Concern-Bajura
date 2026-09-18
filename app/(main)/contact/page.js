@@ -17,10 +17,10 @@ export default async function ContactPage() {
   const contactPage = await db.collection("contactPage").findOne({});
 
   return (
-    <main className="blue-theme relative top-20">
+    <main className="bg-surface relative top-20">
       <ContactHero data={contactPage.hero} />
 
-      <section className="bg-[var(--color-surface-alt)]">
+      <section className="bg-surface">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-14 md:py-16 grid md:grid-cols-2 gap-10 items-start">
           <GetInTouch data={contactPage.contact} />
           <ContactForm data={contactPage.transferForm} />

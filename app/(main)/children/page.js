@@ -19,10 +19,10 @@ export default async function ChildrenPage() {
   const ourChildrenPage = await db.collection("ourChildrenPage").findOne({});
 
   return (
-    <main className="blue-theme relative top-20">
+    <main className="bg-surface relative top-20">
       <ChildrenHero data={ourChildrenPage.hero} />
 
-      <div className="bg-[var(--color-surface-alt)]">
+      <div>
         <MeetChildren data={ourChildrenPage.children} />
       </div>
         

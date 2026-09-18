@@ -29,11 +29,11 @@ export default function Navbar() {
       <nav className="w-full bg-surface/80 fixed top-0 z-30 shadow-2x backdrop-blur-md shadow-lg">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 h-16 flex items-center justify-between">
           <Link href="/">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
 
               <div className="flex min-[1100px]:hidden items-center gap-4 px-1 md:px-4 py-3">
                 <button
-                  className="text-white flex flex-col gap-[5px] cursor-pointer"
+                  className="text-text-white flex flex-col gap-[5px] cursor-pointer"
                   onClick={handleOpenSideBar}
                 >
                   <span className="block w-6 h-[2px] bg-black transition-all"></span>
@@ -116,7 +116,7 @@ export default function Navbar() {
 
 
 
-          <Link href={"/donate"}> <button className="bg-secondary mx-4 text-white text-sm md:text-md text-shadow-md shadow-lg font-medium px-3 md:px-5 py-2.5 rounded-full hover:bg-secondary-hover cursor-pointer transition-colors">
+          <Link href={"/donate"}> <button className="bg-secondary mx-4 text-white text-sm md:text-md text-shadow-md shadow-lg font-medium px-2 md:px-6 py-3 rounded-full hover:bg-secondary-hover cursor-pointer transition-colors">
             Donate Now
           </button>
           </Link>

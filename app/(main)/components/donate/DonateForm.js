@@ -23,13 +23,13 @@ export default function DonateForm({ data }) {
     e.preventDefault();
     // TODO: hook this up to the backend / email service
     console.log(formData);
-    alert("Thanks! We will confirm your donation shortly.");
+
   };
 
   const inputClass =
-    "w-full border border-[var(--color-border)] rounded-lg px-4 py-2.5 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-[var(--color-primary)] transition-colors";
+    "w-full border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary  transition-colors";
 
-  const labelClass = "block text-sm font-medium text-[var(--color-text)] mb-1.5";
+  const labelClass = "block text-sm font-medium text-text mb-1.5";
 
   const handleEsewaPayment = async () => {
     try {
@@ -88,19 +88,76 @@ export default function DonateForm({ data }) {
 
 
 
-  const handleKhaltiPayment = () => {
+  const handleKhaltiPayment = async () => {
 
-    alert("This feature is comming soon...")
+    try {
+      const {
+        donorName,
+        email,
+        phone,
+        amount,
+        remarks,
+      } = formData;
 
-  }
+      if (!donorName || !email) {
+        alert("Please enter your name and email.");
+        return;
+      }
+
+      if (!amount || Number(amount) <= 0) {
+        alert("Please enter a valid donation amount.");
+        return;
+      }
+
+      if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert("Please enter a valid email.");
+        return;
+      }
+
+
+      const response = await fetch("/api/payment/khalti", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          donorName,
+          email,
+          phone,
+          amount: Number(amount),
+          remarks,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.error || "Khalti payment initialization failed"
+        );
+      } // Redirect to Khalti
+      window.location.href = data.paymentUrl;
+
+    } catch (error) {
+      console.error("Khalti payment error:", error);
+
+      alert(
+        error.message ||
+        "Unable to start Khalti payment."
+      );
+    }
+  };
+
 
 
   return (
-    <div className="bg-[var(--color-background)] rounded-2xl border border-[var(--color-border)] shadow-sm p-6 md:p-8">
-      <h2 className="text-2xl font-bold text-center text-[var(--color-text)] [font-family:var(--font-heading)]">
+    <div className="bg-background rounded-2xl border border-border shadow-sm p-6 md:p-8">
+      <h2 className="text-2xl font-bold text-center text-text">
         {data.title}
       </h2>
-      <p className="mt-2 text-center text-sm text-[var(--color-text-secondary)] max-w-md mx-auto">
+      <p className="mt-2 text-center text-sm text-text-secondary max-w-md mx-auto">
         {data.subtitle}
       </p>
 
@@ -134,7 +191,7 @@ export default function DonateForm({ data }) {
           <div>
             <label className={labelClass}>{data.fields.donationAmount.label}</label>
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--color-text-muted)]">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-text-muted">
                 NPR
               </span>
               <input
@@ -176,7 +233,7 @@ export default function DonateForm({ data }) {
           <button
             type="button"
             onClick={handleEsewaPayment}
-            className="w-full flex items-center justify-center gap-2 bg-[#4CAF50] hover:bg-[#43A047] text-white font-medium py-3 rounded-lg transition-colors"
+            className="w-full flex items-center justify-center gap-2 bg-[#4CAF50] hover:bg-[#43A047] text-text-white  font-medium py-3 rounded-lg transition-colors"
           >
             <img src="/img/esewa.jpeg" alt="esewa-img" width={30} />
             Donate with eSewa
@@ -184,18 +241,18 @@ export default function DonateForm({ data }) {
           <button
             onClick={handleKhaltiPayment}
             type="button"
-            className="w-full flex items-center justify-center gap-2 bg-[#db1f26] hover:bg-[#98161b] text-white font-medium py-3 rounded-lg transition-colors"
+            className="w-full flex items-center justify-center gap-2 bg-[#db1f26] hover:bg-[#98161b] text-text-white font-medium py-3 rounded-lg transition-colors"
           >
-            <div className="bg-white">
+            <div className="bg-background">
               <img src="/img/khalti.png" alt="esewa-img" width={30} />
             </div>
             Donate with Khalti
           </button>
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-[#142C8E] hover:bg-[#0F2170] text-white font-medium py-3 rounded-lg transition-colors"
+            className="w-full flex items-center justify-center gap-2 bg-[#142C8E] hover:bg-[#0F2170] text-text-white font-medium py-3 rounded-lg transition-colors"
           >
-            <div className="bg-white">
+            <div className="bg-background">
               <img src="/img/paypal.png" alt="esewa-img" width={40} />
             </div>
             Donate with PayPal

@@ -1,4 +1,5 @@
 import clientPromise from "@/lib/mongodb";
+import { createActivity } from "@/lib/createActivity";
 
 export async function GET() {
     try {
@@ -38,6 +39,12 @@ export async function PUT(request) {
                 upsert: true,
             }
         );
+
+        await createActivity({
+            type: "donatepage",
+            action: "Donate page updated",
+            description: "Donate page content was updated",
+        });
 
         return Response.json({
             message: "Donate Page updated successfully",

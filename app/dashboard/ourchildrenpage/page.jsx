@@ -212,6 +212,29 @@ export default function OurChildrenPageCMS() {
     });
   };
 
+
+  const updateChildDetails = (index, field, value) => {
+    setOurChildrenPage((prev) => {
+      const updatedItems = [...prev.children.items];
+
+      updatedItems[index] = {
+        ...updatedItems[index],
+        details: {
+          ...updatedItems[index].details,
+          [field]: value,
+        }
+      };
+
+      return {
+        ...prev,
+        children: {
+          ...prev.children,
+          items: updatedItems,
+        },
+      };
+    });
+  };
+
   // --------------------------------------------------
   // ADD CHILD
   // --------------------------------------------------
@@ -222,7 +245,7 @@ export default function OurChildrenPageCMS() {
       slug: "",
       name: "",
       age: "",
-      dob: "",
+      dateOfBirth: "",
       birthPlace: "",
       fatherName: "",
       motherName: "",
@@ -298,13 +321,20 @@ export default function OurChildrenPageCMS() {
     setOurChildrenPage((prev) => {
       const updatedItems = [...prev.children.items];
 
-      const updatedStory = [...updatedItems[childIndex].story];
+      const child = updatedItems[childIndex];
 
-      updatedStory[storyIndex] = value;
+      const updatedParagraphs = [
+        ...(child.story?.paragraphs || []),
+      ];
+
+      updatedParagraphs[storyIndex] = value;
 
       updatedItems[childIndex] = {
-        ...updatedItems[childIndex],
-        story: updatedStory,
+        ...child,
+        story: {
+          ...child.story,
+          paragraphs: updatedParagraphs,
+        },
       };
 
       return {
@@ -316,18 +346,25 @@ export default function OurChildrenPageCMS() {
       };
     });
   };
+
 
   // --------------------------------------------------
   // ADD STORY PARAGRAPH
   // --------------------------------------------------
-
   const addStoryParagraph = (childIndex) => {
     setOurChildrenPage((prev) => {
       const updatedItems = [...prev.children.items];
+      const child = updatedItems[childIndex];
 
       updatedItems[childIndex] = {
-        ...updatedItems[childIndex],
-        story: [...updatedItems[childIndex].story, ""],
+        ...child,
+        story: {
+          ...child.story,
+          paragraphs: [
+            ...(child.story?.paragraphs || []),
+            "",
+          ],
+        },
       };
 
       return {
@@ -339,6 +376,8 @@ export default function OurChildrenPageCMS() {
       };
     });
   };
+
+
 
   // --------------------------------------------------
   // REMOVE STORY PARAGRAPH
@@ -348,11 +387,18 @@ export default function OurChildrenPageCMS() {
     setOurChildrenPage((prev) => {
       const updatedItems = [...prev.children.items];
 
+      const child = updatedItems[childIndex];
+
+      const updatedParagraphs = (child.story?.paragraphs || []).filter(
+        (_, i) => i !== storyIndex
+      );
+
       updatedItems[childIndex] = {
-        ...updatedItems[childIndex],
-        story: updatedItems[childIndex].story.filter(
-          (_, i) => i !== storyIndex
-        ),
+        ...child,
+        story: {
+          ...child.story,
+          paragraphs: updatedParagraphs,
+        },
       };
 
       return {
@@ -364,6 +410,7 @@ export default function OurChildrenPageCMS() {
       };
     });
   };
+
 
   // --------------------------------------------------
   // UPDATE CTA
@@ -766,11 +813,11 @@ export default function OurChildrenPageCMS() {
 
                         <input
                           type="text"
-                          value={child.dob}
+                          value={child.dateOfBirth}
                           onChange={(e) =>
-                            updateChild(
+                            updateChildDetails(
                               index,
-                              "dob",
+                              "dateOfBirth",
                               e.target.value
                             )
                           }
@@ -779,8 +826,8 @@ export default function OurChildrenPageCMS() {
                           className={inputClass}
                         />
 
-                        <p className={counterClass(child.dob?.length || 0, fieldLimits.childDob)}>
-                          {child.dob?.length || 0}/{fieldLimits.childDob} characters
+                        <p className={counterClass(child.dateOfBirth?.length || 0, fieldLimits.childDob)}>
+                          {child.dateOfBirth?.length || 0}/{fieldLimits.childDob} characters
                         </p>
                       </div>
 
@@ -793,7 +840,7 @@ export default function OurChildrenPageCMS() {
                           type="text"
                           value={child.birthPlace}
                           onChange={(e) =>
-                            updateChild(
+                            updateChildDetails(
                               index,
                               "birthPlace",
                               e.target.value
@@ -824,7 +871,7 @@ export default function OurChildrenPageCMS() {
                           type="text"
                           value={child.fatherName}
                           onChange={(e) =>
-                            updateChild(
+                            updateChildDetails(
                               index,
                               "fatherName",
                               e.target.value
@@ -849,7 +896,7 @@ export default function OurChildrenPageCMS() {
                           type="text"
                           value={child.motherName}
                           onChange={(e) =>
-                            updateChild(
+                            updateChildDetails(
                               index,
                               "motherName",
                               e.target.value
@@ -934,15 +981,7 @@ export default function OurChildrenPageCMS() {
                           </p>
                         </div>
 
-                        <button
-                          type="button"
-                          className={addButtonClass}
-                          onClick={() =>
-                            addStoryParagraph(index)
-                          }
-                        >
-                          + Add Paragraph
-                        </button>
+
 
                       </div>
 
@@ -962,20 +1001,19 @@ export default function OurChildrenPageCMS() {
                                   Paragraph {storyIndex + 1}
                                 </span>
 
-                                {child.story.length > 1 && (
-                                  <button
-                                    type="button"
-                                    className={removeButtonClass}
-                                    onClick={() =>
-                                      removeStoryParagraph(
-                                        index,
-                                        storyIndex
-                                      )
-                                    }
-                                  >
-                                    Remove
-                                  </button>
-                                )}
+
+                                <button
+                                  type="button"
+                                  className={removeButtonClass}
+                                  onClick={() =>
+                                    removeStoryParagraph(
+                                      index,
+                                      storyIndex
+                                    )
+                                  }
+                                >
+                                  Remove
+                                </button>
 
                               </div>
 
@@ -998,11 +1036,21 @@ export default function OurChildrenPageCMS() {
                                 {paragraph?.length || 0}/{fieldLimits.childEmblaDescription} characters
                               </p>
 
+
                             </div>
+
 
                           )
                         )}
-
+                        <button
+                          type="button"
+                          className={addButtonClass}
+                          onClick={() =>
+                            addStoryParagraph(index)
+                          }
+                        >
+                          + Add Paragraph
+                        </button> 
                       </div>
 
                     </div>
@@ -1074,60 +1122,81 @@ export default function OurChildrenPageCMS() {
                 </p>
               </div>
 
-              <div>
-                <label className={labelClass}>
-                  CTA Description
-                </label>
 
-                <textarea
-                  rows={3}
-                  value={ourChildrenPage.cta.description}
-                  onChange={(e) =>
-                    updateCTA("description", e.target.value)
-                  }
-                  maxLength={fieldLimits.donateDescription}
-                  placeholder="Your support can help provide education, nutrition, and care."
-                  className={textareaClass}
-                />
+              <div className={fieldRowClass}>
 
-                <p className={counterClass(ourChildrenPage.cta.description?.length || 0, fieldLimits.donateDescription)}>
-                  {ourChildrenPage.cta.description?.length || 0}/{fieldLimits.donateDescription} characters
-                </p>
+                <div>
+                  <label className={labelClass}>
+                    Button 1 Text
+                  </label>
+
+                  <input
+                    type="text"
+                    value={ourChildrenPage.cta.button1Text}
+                    onChange={(e) =>
+                      updateCTA("button1Text", e.target.value)
+                    }
+                    maxLength={fieldLimits.buttonText}
+                    placeholder="Support Our Children"  
+                    className={inputClass}
+                  />
+
+                  <p className={counterClass(ourChildrenPage.cta.button1Text?.length || 0, fieldLimits.buttonText)}>
+                    {ourChildrenPage.cta.button1Text?.length || 0}/{fieldLimits.buttonText} characters
+                  </p>
+                </div>
+
+                <div>
+                  <label className={labelClass}>
+                    Button 1 Link
+                  </label>
+
+                  <input
+                    type="text"
+                    value={ourChildrenPage.cta.button1Link}
+                    onChange={(e) =>
+                      updateCTA("button1Link", e.target.value)
+                    }
+                    placeholder="/donate"
+                    className={inputClass}
+                  />
+                </div>
+
               </div>
 
               <div className={fieldRowClass}>
 
                 <div>
                   <label className={labelClass}>
-                    Button Text
+                    Button 2 Text
                   </label>
 
                   <input
                     type="text"
-                    value={ourChildrenPage.cta.buttonText}
+                    value={ourChildrenPage.cta.button2Text}
                     onChange={(e) =>
-                      updateCTA("buttonText", e.target.value)
+                      updateCTA("button2Text", e.target.value)
                     }
                     maxLength={fieldLimits.buttonText}
-                    placeholder="Support Our Children"
+                    placeholder="Support Our Children"  
                     className={inputClass}
                   />
 
-                  <p className={counterClass(ourChildrenPage.cta.buttonText?.length || 0, fieldLimits.buttonText)}>
-                    {ourChildrenPage.cta.buttonText?.length || 0}/{fieldLimits.buttonText} characters
+                  <p className={counterClass(ourChildrenPage.cta.button2Text?.length || 0, fieldLimits.buttonText)}>
+                    {ourChildrenPage.cta.button2Text?.length || 0}/{fieldLimits.buttonText} characters
                   </p>
                 </div>
 
                 <div>
                   <label className={labelClass}>
-                    Button Link
+                    Button 2 Link
                   </label>
 
                   <input
                     type="text"
-                    value={ourChildrenPage.cta.buttonLink}
+                    value={ourChildrenPage.cta.button2Link}
                     onChange={(e) =>
-                      updateCTA("buttonLink", e.target.value)
+                      updateCTA("button2Link", e.target.value)
                     }
                     placeholder="/donate"
                     className={inputClass}

@@ -3,16 +3,16 @@ import { CheckCircle2 } from "lucide-react";
 
 export default function WhyConcernBajura({ data }) {
   return (
-    <section className="bg-[var(--color-primary-light)]">
+    <section className="bg- bg-primary-light">
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-secondary)] [font-family:var(--font-heading)]">
+          <h2 className="text-2xl md:text-3xl font-bold text-text-secondary">
             {data.title}
           </h2>
 
           {data.paragraphs?.map((paragraph, index) => (
             <p key={index}
-              className="mt-5 text-[var(--color-text-secondary)] leading-relaxed">
+              className="mt-5 text-text leading-relaxed">
               {paragraph}
             </p>
           ))}
@@ -22,9 +22,9 @@ export default function WhyConcernBajura({ data }) {
               <div key={point} className="flex items-center gap-3">
                 <CheckCircle2
                   size={20}
-                  className="text-[var(--color-secondary)] shrink-0"
+                  className="text-secondary shrink-0"
                 />
-                <span className="text-[var(--color-text)]">{point}</span>
+                <span className="text-text">{point}</span>
               </div>
             ))}
           </div>

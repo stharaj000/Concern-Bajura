@@ -10,10 +10,10 @@ export default function DonorsHero({ data }) {
       <div className="absolute inset-0 bg-black/45" />
 
       <div className="relative h-full max-w-4xl mx-auto px-4 flex flex-col items-center justify-center text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-white [font-family:var(--font-heading)]">
+        <h1 className="text-4xl md:text-5xl font-bold text-text-white [font-family:var(--font-heading)]">
           {data.title}
         </h1>
-        <p className="mt-4 text-white/90 text-lg max-w-xl">
+        <p className="mt-4 text-text-white-secondary text-lg max-w-xl">
           {data.subtitle}
         </p>
       </div>

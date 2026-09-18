@@ -26,7 +26,7 @@ export default async function RootLayout({ children }) {
 
         <SideBarClient />
 
-        <div className="flex w-full justify-end bg-gray-100 ">
+        <div className="flex w-full justify-end bg-surface">
           {children}
         </div>
       </div>

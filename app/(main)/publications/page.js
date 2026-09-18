@@ -20,10 +20,10 @@ export default async function PublicationsPage() {
 
 
   return (
-    <main className="blue-theme relative top-20">
+    <main className="relative top-20">
       <PublicationsHero data={publicationReportpage.hero} />
 
-      <div className="bg-[var(--color-surface-alt)]">
+      <div className="bg-surface">
         <DocumentsList data={publicationReportpage.documents} />
       </div>
     </main>

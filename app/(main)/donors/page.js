@@ -17,10 +17,10 @@ export default async function DonorsPage() {
   const donorspage = await db.collection("donorspage").findOne({});
 
   return (
-    <main className="blue-theme relative top-20">
+    <main className="bg-surface relative top-20">
       <DonorsHero data={donorspage.hero} />
 
-      <div className="bg-[var(--color-surface-alt)]">
+      <div className="bg-surface">
         <DonorsGrid data={donorspage.donors} />
       </div>
 

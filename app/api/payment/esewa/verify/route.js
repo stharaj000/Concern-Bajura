@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import clientPromise from "@/lib/mongodb";
+import { createActivity } from "@/lib/createActivity";
+
 
 
 function generateEsewaSignature(data, secretKey) {
@@ -88,6 +90,22 @@ export async function POST(req) {
         const client = await clientPromise;
         const db = await client.db("test");
 
+
+        const donation = await db.collection("donations").findOne({
+            transactionUuid,
+            status: "pending",
+        });
+
+
+        if (!donation) {
+            return NextResponse.json(
+                {
+                    error: "Donation record not found or already completed",
+                },
+                { status: 404 }
+            );
+        }
+
         const result = await db.collection("donations").updateOne(
             {
                 transactionUuid: paymentData.transaction_uuid,
@@ -105,7 +123,7 @@ export async function POST(req) {
             }
         );
 
-        if (result.matchCount === 0) {
+        if (result.matchedCount === 0) {
             return NextResponse.json(
                 {
                     error: "Donation record not found",
@@ -113,6 +131,14 @@ export async function POST(req) {
                 { status: 404 }
             );
         }
+
+
+        await createActivity({
+            type: "donation",
+            action: "New donation received",
+            description: `${donation.donorName || "Anonymous Donor"} donated ${donation.currency} ${donation.amount} via Esewa`,
+        });
+
 
         return NextResponse.json({
             message: "Payment verified successfully",

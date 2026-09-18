@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function OurPrograms({ data }) {
   return (
     <section className="md:max-w-7xl mx-auto px-4 md:px-6 py-14 md:py-20">
-      <h2 className="text-2xl text-text-muted md:text-3xl font-semibold text-center tracking-[-0.01em]">
+      <h2 className="text-2xl text-text-secondary md:text-3xl font-bold text-center tracking-[-0.01em]">
         {data.title}
       </h2>
 
@@ -16,7 +16,7 @@ export default function OurPrograms({ data }) {
           <Link href={item.link}>
             <div
               key={index + 1}
-              className="bg-white shadow-xl hover:cursor-pointer rounded-2xl overflow-hidden hover:shadow-md transition-shadow"
+              className="bg-background shadow-xl hover:cursor-pointer rounded-2xl overflow-hidden hover:shadow-md transition-shadow"
             >
 
               <div className="imgcont bg-gray-600 w-full h-64 overflow-hidden relative">
@@ -39,9 +39,9 @@ export default function OurPrograms({ data }) {
                   {item.category}
                 </span>
                 <h3 className="mt-2 text-lg font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm text-gray-600">{item.description}</p>
-                <button className="mt-4 w-fit flex items-center gap-1 text-sm font-medium text-[var(--color-primary-active)] hover:text-[var(--color-primary-hover)] transition-colors hover:cursor-pointer">
-                  Learn More
+                <p className="mt-2 text-sm text-text-secondary">{item.description}</p>
+                <button className="mt-4 w-fit flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-hover transition-colors hover:cursor-pointer">
+                  {item.linkText}
                   <ArrowRight size={15} />
                 </button>
               </div>

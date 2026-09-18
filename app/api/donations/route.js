@@ -20,6 +20,8 @@ export async function GET() {
         }));
 
         return Response.json(formattedDonations);
+
+
     } catch (error) {
         console.error("Fetch donations error:", error);
 

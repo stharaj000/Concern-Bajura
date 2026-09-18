@@ -438,9 +438,7 @@ export default function GalleryPageCMS() {
                           <label className="block text-sm font-medium text-gray-700">Photos</label>
                           <p className="mt-1 text-xs text-gray-500">Add the photos that belong to this album.</p>
                         </div>
-                        <button type="button" className={addButtonClass} onClick={() => addPhoto(albumIndex)}>
-                          + Add Photo
-                        </button>
+                        
                       </div>
 
                       <div className="space-y-4">
@@ -497,11 +495,16 @@ export default function GalleryPageCMS() {
                                   {photo.alt?.length || 0}/{fieldLimits.photoAlt} characters
                                 </p>
                               </div>
+                              
                             </div>
+                            
                           </div>
                         ))}
                       </div>
                     </div>
+                      <button type="button" className={addButtonClass} onClick={() => addPhoto(albumIndex)}>
+                          + Add Photo
+                        </button>
                   </div>
                 </div>
               ))}

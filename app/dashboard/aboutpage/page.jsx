@@ -128,7 +128,6 @@ export default function AboutpageCMS() {
     const addObjective = () => {
         const newObjective = {
             id: `objective-${Date.now()}`,
-            icon: "graduation-cap",
             title: "",
             description: "",
         };
@@ -476,15 +475,7 @@ export default function AboutpageCMS() {
                                         Manage the objectives displayed on the About page.
                                     </p>
                                 </div>
-                                <div className="border-t border-gray-200 pt-6">
-                                    <button
-                                        type="button"
-                                        className={addButtonClass}
-                                        onClick={addObjective}
-                                    >
-                                        + Add Objective
-                                    </button>
-                                </div>
+                               
                             </div>
 
                             {/* Section Title */}
@@ -550,50 +541,7 @@ export default function AboutpageCMS() {
 
                                         <div className={fieldRowClass}>
 
-                                            {/* Icon */}
-                                            <div>
-                                                <label className={labelClass}>
-                                                    Icon
-                                                </label>
-
-                                                <select
-                                                    className={inputClass}
-                                                    value={item.icon}
-                                                    onChange={(e) => {
-                                                        const updatedItems =
-                                                            [...aboutpage.objectives.items];
-
-                                                        updatedItems[index] = {
-                                                            ...updatedItems[index],
-                                                            icon: e.target.value,
-                                                        };
-
-                                                        setAboutpage({
-                                                            ...aboutpage,
-                                                            objectives: {
-                                                                ...aboutpage.objectives,
-                                                                items: updatedItems,
-                                                            },
-                                                        });
-                                                    }}
-                                                >
-                                                    <option value="graduation-cap">
-                                                        Graduation Cap
-                                                    </option>
-
-                                                    <option value="cross">
-                                                        Cross
-                                                    </option>
-
-                                                    <option value="utensils">
-                                                        Utensils
-                                                    </option>
-
-                                                    <option value="home">
-                                                        Home
-                                                    </option>
-                                                </select>
-                                            </div>
+                                           
 
                                             {/* Title */}
                                             <div>
@@ -1455,58 +1403,7 @@ export default function AboutpageCMS() {
 
                                             <div className={fieldRowClass}>
 
-                                                {/* Icon */}
-                                                <div>
-
-                                                    <label className={labelClass}>
-                                                        Icon
-                                                    </label>
-
-                                                    <select
-                                                        className={inputClass}
-                                                        value={item.icon}
-                                                        onChange={(e) => {
-
-                                                            const updatedItems =
-                                                                [
-                                                                    ...aboutpage
-                                                                        .missionVisionGoal
-                                                                        .items,
-                                                                ];
-
-                                                            updatedItems[index] = {
-                                                                ...updatedItems[index],
-                                                                icon: e.target.value,
-                                                            };
-
-                                                            setAboutpage({
-                                                                ...aboutpage,
-                                                                missionVisionGoal: {
-                                                                    ...aboutpage
-                                                                        .missionVisionGoal,
-                                                                    items:
-                                                                        updatedItems,
-                                                                },
-                                                            });
-
-                                                        }}
-                                                    >
-
-                                                        <option value="compass">
-                                                            Compass
-                                                        </option>
-
-                                                        <option value="eye">
-                                                            Eye
-                                                        </option>
-
-                                                        <option value="flag">
-                                                            Flag
-                                                        </option>
-
-                                                    </select>
-
-                                                </div>
+                                               
 
 
                                                 {/* Title */}

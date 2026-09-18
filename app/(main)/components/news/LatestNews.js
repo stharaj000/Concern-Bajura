@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function LatestNews({ data }) {
   return (
-    <section className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20">
-      <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text)] [font-family:var(--font-heading)]">
+    <section className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20 flex flex-col items-center">
+      <h2 className="text-2xl md:text-3xl font-bold text-text-secondary">
         {data.title}
       </h2>
 
@@ -15,7 +15,7 @@ export default function LatestNews({ data }) {
           <Link href={item.link}>
             <div
               key={item.id}
-              className="bg-white shadow-xl hover:cursor-pointer rounded-2xl overflow-hidden hover:shadow-md transition-shadow"
+              className="bg-background shadow-md hover:cursor-pointer rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
             >
               <div className="imgcont bg-gray-600 w-full h-64 overflow-hidden relative">
                 <img className='w-full h-full hover:scale-105 transition-all object-cover object-top'
@@ -36,10 +36,10 @@ export default function LatestNews({ data }) {
                 <span className="text-xs font-medium text-primary uppercase tracking-[0.05em]">
                   {item.tag}
                 </span>
-                <h3 className="mt-2 text-lg font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm text-gray-600">{item.description}</p>
-                <p className="mt-3 text-xs text-gray-400">{item.date}</p>
-                <button className="mt-4 w-fit flex items-center gap-1 text-sm font-medium text-[var(--color-primary-active)] hover:text-[var(--color-primary-hover)] transition-colors hover:cursor-pointer">
+                <h3 className="mt-2 text-lg font-semibold text-text">{item.title}</h3>
+                <p className="mt-2 text-sm text-text-secondary">{item.description}</p>
+                <p className="mt-3 text-xs text-text-muted">{item.date}</p>
+                <button className="mt-4 w-fit flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-hover transition-colors hover:cursor-pointer">
                   {item.linkText}
                   <ArrowRight size={15} />
                 </button>

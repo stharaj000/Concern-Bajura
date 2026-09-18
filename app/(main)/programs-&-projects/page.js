@@ -18,10 +18,10 @@ export default async function ProgramsPage() {
   const programProjectpage = await db.collection("program&projectpage").findOne({});
 
   return (
-    <main className="blue-theme relative top-20">
+    <main className="relative top-20 bg-surface">
       <ProgramsHero data={programProjectpage.hero} />
 
-      <div className="bg-[var(--color-surface-alt)]">
+      <div className="">
         <OurPrograms data={programProjectpage.programs} />
       </div>
 

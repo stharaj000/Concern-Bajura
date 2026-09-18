@@ -1,45 +1,47 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
-export default function DonateSuccess() {
+export default function KhaltiSuccessPage() {
+    const searchParams = useSearchParams();
+
     const [status, setStatus] = useState("verifying");
     const [message, setMessage] = useState("Verifying your payment...");
-    const verificationStarted = useRef(false);
 
     useEffect(() => {
-        if (verificationStarted.current) return;
-
-        verificationStarted.current = true;
-
         const verifyPayment = async () => {
+            const pidx = searchParams.get("pidx");
+
+            console.log("Khalti success page pidx:", pidx);
+
+            if (!pidx) {
+                setStatus("error");
+                setMessage("Payment identifier is missing.");
+                return;
+            }
+
             try {
-                // SAME eSewa logic
-                const params = new URLSearchParams(window.location.search);
-                const encodedData = params.get("data");
-
-                if (!encodedData) {
-                    setStatus("error");
-                    setMessage("Invalid payment response.");
-                    return;
-                }
-
-                const response = await fetch("/api/payment/esewa/verify", {
+                const response = await fetch("/api/payment/khalti/verify", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        data: encodedData,
+                        pidx,
                     }),
                 });
 
-                const result = await response.json();
+                const data = await response.json();
+
+                console.log("Khalti verification result:", data);
 
                 if (!response.ok) {
-                    throw new Error(
-                        result.error || "Payment verification failed"
+                    setStatus("error");
+                    setMessage(
+                        data.error || "Unable to verify payment."
                     );
+                    return;
                 }
 
                 setStatus("success");
@@ -47,30 +49,33 @@ export default function DonateSuccess() {
                     "Your payment has been completed successfully!"
                 );
             } catch (error) {
-                console.error("Payment verification error:", error);
+                console.error("Verification error:", error);
 
                 setStatus("error");
-                setMessage("We could not verify your donation.");
+                setMessage(
+                    "Something went wrong while verifying your payment."
+                );
             }
         };
 
         verifyPayment();
-    }, []);
+    }, [searchParams]);
 
     return (
-        <main className="relative top-20 min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 px-4 py-16">
+        <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 px-4 py-16 relative top-20">
             <div className="flex min-h-[70vh] items-center justify-center">
                 <div className="w-full max-w-md">
                     <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/60">
 
                         {/* Top colored bar */}
                         <div
-                            className={`h-2 ${status === "success"
+                            className={`h-2 ${
+                                status === "success"
                                     ? "bg-success"
                                     : status === "error"
-                                        ? "bg-danger"
-                                        : "bg-primary"
-                                }`}
+                                    ? "bg-danger"
+                                    : "bg-primary"
+                            }`}
                         />
 
                         <div className="px-6 py-10 text-center sm:px-10">
@@ -144,8 +149,8 @@ export default function DonateSuccess() {
                                 {status === "verifying"
                                     ? "Verifying Payment"
                                     : status === "success"
-                                        ? "Payment Successful!"
-                                        : "Payment Verification Failed"}
+                                    ? "Payment Successful!"
+                                    : "Payment Verification Failed"}
                             </h1>
 
                             {/* Message */}
@@ -180,7 +185,6 @@ export default function DonateSuccess() {
                                                 successfully verified.
                                             </p>
                                         </div>
-
                                     </div>
                                 </div>
                             )}
@@ -227,10 +231,11 @@ export default function DonateSuccess() {
                             {status !== "verifying" && (
                                 <a
                                     href="/"
-                                    className={`mt-8 inline-flex w-full items-center justify-center rounded-xl px-5 py-3.5 text-sm font-semibold text-white transition ${status === "success"
+                                    className={`mt-8 inline-flex w-full items-center justify-center rounded-xl px-5 py-3.5 text-sm font-semibold text-white transition ${
+                                        status === "success"
                                             ? "bg-primary hover:bg-primary-hover"
                                             : "bg-slate-900 hover:bg-slate-800"
-                                        }`}
+                                    }`}
                                 >
                                     {status === "success"
                                         ? "Continue to Home"

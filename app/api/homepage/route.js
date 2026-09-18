@@ -1,4 +1,5 @@
 import clientPromise from "@/lib/mongodb";
+import { createActivity } from "@/lib/createActivity";
 
 export async function GET() {
     try {
@@ -33,6 +34,12 @@ export async function PUT(request) {
                 $set: body
             }
         );
+
+        await createActivity({
+            type: "homepage",
+            action: "Homepage updated",
+            description: "Homepage content was updated",
+        });
 
         return Response.json({
             message: "Homepage updated successfully",
