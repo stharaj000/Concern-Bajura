@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function KhaltiSuccessPage() {
+function KhaltiSuccessContent() {
     const searchParams = useSearchParams();
 
     const [status, setStatus] = useState("verifying");
@@ -69,13 +69,12 @@ export default function KhaltiSuccessPage() {
 
                         {/* Top colored bar */}
                         <div
-                            className={`h-2 ${
-                                status === "success"
+                            className={`h-2 ${status === "success"
                                     ? "bg-success"
                                     : status === "error"
-                                    ? "bg-danger"
-                                    : "bg-primary"
-                            }`}
+                                        ? "bg-danger"
+                                        : "bg-primary"
+                                }`}
                         />
 
                         <div className="px-6 py-10 text-center sm:px-10">
@@ -149,8 +148,8 @@ export default function KhaltiSuccessPage() {
                                 {status === "verifying"
                                     ? "Verifying Payment"
                                     : status === "success"
-                                    ? "Payment Successful!"
-                                    : "Payment Verification Failed"}
+                                        ? "Payment Successful!"
+                                        : "Payment Verification Failed"}
                             </h1>
 
                             {/* Message */}
@@ -231,11 +230,10 @@ export default function KhaltiSuccessPage() {
                             {status !== "verifying" && (
                                 <a
                                     href="/"
-                                    className={`mt-8 inline-flex w-full items-center justify-center rounded-xl px-5 py-3.5 text-sm font-semibold text-white transition ${
-                                        status === "success"
+                                    className={`mt-8 inline-flex w-full items-center justify-center rounded-xl px-5 py-3.5 text-sm font-semibold text-white transition ${status === "success"
                                             ? "bg-primary hover:bg-primary-hover"
                                             : "bg-slate-900 hover:bg-slate-800"
-                                    }`}
+                                        }`}
                                 >
                                     {status === "success"
                                         ? "Continue to Home"
@@ -257,5 +255,40 @@ export default function KhaltiSuccessPage() {
                 </div>
             </div>
         </main>
+    );
+}
+
+export default function KhaltiSuccessPage() {
+    return (
+        <Suspense
+            fallback={
+                <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 px-4 py-16 relative top-20">
+                    <div className="flex min-h-[70vh] items-center justify-center">
+                        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary">
+                            <svg
+                                className="h-10 w-10 animate-spin text-indigo-100"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="9"
+                                    stroke="currentColor"
+                                    strokeWidth="3"
+                                    className="opacity-25"
+                                />
+                                <path
+                                    fill="currentColor"
+                                    d="M21 12a9 9 0 0 0-9-9v3a6 6 0 0 1 6 6h3Z"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+                </main>
+            }
+        >
+            <KhaltiSuccessContent />
+        </Suspense>
     );
 }
