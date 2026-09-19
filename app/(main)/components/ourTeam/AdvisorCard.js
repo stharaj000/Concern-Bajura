@@ -4,7 +4,7 @@ export default function AdvisorCard({ name, role, image }) {
       <img
         src={image}
         alt={name}
-        className="w-20 h-20 rounded-full object-cover mx-auto"
+        className="w-34 h-34 rounded-full object-cover mx-auto"
       />
       <h3 className="mt-4 font-semibold text-text">{name}</h3>
       <p className="mt-1 text-xs text-primary uppercase tracking-[0.05em]">

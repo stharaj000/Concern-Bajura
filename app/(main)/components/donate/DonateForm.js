@@ -88,6 +88,7 @@ export default function DonateForm({ data }) {
 
 
 
+
   const handleKhaltiPayment = async () => {
 
     try {
@@ -149,6 +150,13 @@ export default function DonateForm({ data }) {
       );
     }
   };
+
+
+
+  const handlePaypalPayment = () => {
+    alert("This Feature is Coming soon.");
+    window.location.href = "https://www.paypal.com/in/home";
+  }
 
 
 
@@ -249,6 +257,7 @@ export default function DonateForm({ data }) {
             Donate with Khalti
           </button>
           <button
+            onClick={handlePaypalPayment}
             type="submit"
             className="w-full flex items-center justify-center gap-2 bg-[#142C8E] hover:bg-[#0F2170] text-text-white font-medium py-3 rounded-lg transition-colors"
           >

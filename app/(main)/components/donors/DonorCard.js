@@ -25,7 +25,7 @@ export default function DonorCard({ donor }) {
       <img
         src={donor.image}
         alt={donor.name}
-        className="w-full h-52 object-cover"
+        className="w-full h-62 object-cover"
       />
 
       <div className="whiteShade bg-white opacity-8 h-74 w-18 absolute top-[-25px] right-0 z-20 animate-shine"></div>

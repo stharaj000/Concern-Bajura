@@ -5,7 +5,7 @@ export default function AboutIntro({ data }) {
         {data.title}
       </h2>
       <p className="mt-6 text-text leading-relaxed text-justify md:text-justify">
-        {data.description}.
+        {data.description}
       </p>
     </section>
   );
