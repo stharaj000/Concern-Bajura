@@ -116,7 +116,7 @@ export default function Navbar() {
 
 
 
-          <Link href={"/donate"}> <button className="bg-secondary mx-4 text-white text-sm md:text-md text-shadow-md shadow-lg font-medium px-2 md:px-6 py-3 rounded-full hover:bg-secondary-hover cursor-pointer transition-colors">
+          <Link href={"/donate"}> <button className="bg-secondary mx-4 text-white text-xs sm:text-sm md:text-md text-shadow-md shadow-lg font-medium px-2 md:px-6 py-3 rounded-full hover:bg-secondary-hover cursor-pointer transition-colors">
             Donate Now
           </button>
           </Link>

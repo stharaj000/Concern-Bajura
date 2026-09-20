@@ -12,19 +12,21 @@ export default function DocumentRow({ title, description, href, linkText }) {
         <FileText size={20} className="text-primary" />
       </div>
 
-      <div className="flex-1 min-w-0">
-        <h3 className="text-lg font-semibold text-text">
-          {title}
-        </h3>
-        <p className="mt-1 text-sm text-text-secondary">
-          {description}
-        </p>
-      </div>
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg font-semibold text-text">
+            {title}
+          </h3>
+          <p className="mt-1 text-sm text-text-secondary">
+            {description}
+          </p>
+        </div>
 
-      <span className="shrink-0 flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-hover transition-colors">
-        {linkText}
-        <ArrowRight size={15} />
-      </span>
+        <span className="shrink-0 flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-hover transition-colors">
+          {linkText}
+          <ArrowRight size={15} />
+        </span>
+      </div>
     </a>
   );
 }
