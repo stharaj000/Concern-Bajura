@@ -9,6 +9,9 @@ export const metadata = {
     "Meet the individuals and organizations powering Concern Bajura's mission in Bajura, Nepal.",
 };
 
+
+export const dynamic = "force-dynamic";
+
 export default async function DonorsPage() {
 
   const client = await clientPromise;

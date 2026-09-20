@@ -10,6 +10,10 @@ export const metadata = {
     "Photo albums and video stories from Concern Bajura's work supporting children in Bajura, Nepal.",
 };
 
+
+
+export const dynamic = "force-dynamic";
+
 export default async function GalleryPage() {
 
   const client = await clientPromise;

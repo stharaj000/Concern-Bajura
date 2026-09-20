@@ -11,6 +11,9 @@ export const metadata = {
     "Support the children of Bajura with a direct bank transfer or online payment.",
 };
 
+
+export const dynamic = "force-dynamic";
+
 export default async function DonatePage() {
 
   const client = await clientPromise;

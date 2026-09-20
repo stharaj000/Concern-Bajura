@@ -10,6 +10,9 @@ export const metadata = {
 
 import clientPromise from "@/lib/mongodb";
 
+
+export const dynamic = "force-dynamic";
+
 export default async function ContactPage() {
 
   const client = await clientPromise;

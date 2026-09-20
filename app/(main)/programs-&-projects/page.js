@@ -10,6 +10,8 @@ export const metadata = {
     "Explore Concern Bajura's education, healthcare, nutrition, and shelter programs supporting children in Bajura, Nepal.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ProgramsPage() {
 
   const client = await clientPromise;

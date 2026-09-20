@@ -11,6 +11,9 @@ export const metadata = {
     "Meet the children Concern Bajura supports through shelter, education, and community care in Bajura, Nepal.",
 };
 
+
+export const dynamic = "force-dynamic";
+
 export default async function ChildrenPage() {
 
   const client = await clientPromise;

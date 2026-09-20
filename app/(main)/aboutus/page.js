@@ -15,6 +15,8 @@ export const metadata = {
     "Learn about Concern Bajura's mission, history, and impact supporting orphaned and vulnerable children in Bajura, Nepal.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function AboutPage() {
 
   const client = await clientPromise;

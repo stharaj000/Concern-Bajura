@@ -10,6 +10,9 @@ export const metadata = {
     "Stay updated with Concern Bajura's latest initiatives, community milestones, and upcoming events in Bajura, Nepal.",
 };
 
+
+export const dynamic = "force-dynamic";
+
 export default async function NewsPage() {
 
   const client = await clientPromise;

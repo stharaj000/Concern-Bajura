@@ -11,6 +11,8 @@ export const metadata = {
     "Meet the board, advisory council, and staff behind Concern Bajura's work in Bajura, Nepal.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function TeamPage() {
   const client = await clientPromise;
   const db = client.db("test");
