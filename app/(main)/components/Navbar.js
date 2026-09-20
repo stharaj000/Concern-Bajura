@@ -126,7 +126,7 @@ export default function Navbar() {
               <MdClose className="p-4 w-fit h-16 flex " onClick={handleCloseSideBar} size={100} />
             </div>
             <ul className=" flex  flex-col" onClick={handleCloseSideBar}>
-              <Link href="/about">
+              <Link href="/aboutus">
                 <li className="cursor-pointer nav-link text-lg p-4">About us
                   <hr />
                 </li>
