@@ -11,6 +11,8 @@ import CTA from "@/app/(main)/components/CTA";
 import clientPromise from "@/lib/mongodb";
 
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
 
   const client = await clientPromise;
